@@ -1,9 +1,10 @@
 # mithraeum-subgraph
 subgraph
 
+1. instal graph cli globally 
 
-1. npm install
+2. npm install
 
-2. npm run codegen
+3. npm run codegen
 
-3. yarn deploy
+4. npm run build
