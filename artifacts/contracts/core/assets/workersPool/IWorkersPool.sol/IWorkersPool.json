@@ -1,0 +1,148 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWorkersPool",
+  "sourceName": "contracts/core/assets/workersPool/IWorkersPool.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "CannotHireWorkersDueToNotEnoughProsperityInSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireWorkersDueToTheirCostIsHigherThanMaxProsperityToSellSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireWorkersExceedingTransactionLimit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireWorkersInvalidWorkersToBuySpecified",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyerSettlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "boughtWorkersAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "spentProsperityAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "WorkersBought",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "workersToBuy",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateProsperityForExactWorkers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "prosperityToSell",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newWorkerPrice",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastPurchaseTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "relatedRegion",
+      "outputs": [
+        {
+          "internalType": "contract IRegion",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "workersToBuy",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxProsperityToSell",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapProsperityForExactWorkers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workersCount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "workerPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -1,0 +1,55 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWorldAssetFactory",
+  "sourceName": "contracts/core/assets/IWorldAssetFactory.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "OnlyWorldOrWorldAsset",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "worldAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "eraNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "assetGroupId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "assetTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "initParams",
+          "type": "bytes"
+        }
+      ],
+      "name": "create",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "worldAssetAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

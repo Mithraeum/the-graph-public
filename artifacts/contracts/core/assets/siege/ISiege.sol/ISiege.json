@@ -1,0 +1,409 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ISiege",
+  "sourceName": "contracts/core/assets/siege/ISiege.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "RobberyPointsSwapNotAllowedDueToNothingWasStolenAndBurned",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "RobberyPointsSwapNotAllowedDueToSpecifiedBuildingAddressDoesNotBelongToSettlementOfThisSiege",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "RobberyPointsSwapNotAllowedDueToSpecifiedBuildingAddressIsNotPartOfEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "RobberyPointsSwapNotAllowedDueToWrongMaxPointsToSpendSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "SiegeCannotBeModifiedDueToInvalidUnitsAmountSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "SiegeCannotLiquidateArmy",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ArmyLiquidated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool[]",
+          "name": "toAddIndication",
+          "type": "bool[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRobberyMultiplier",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newTotalSiegePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "ArmySiegeModified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buildingAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "stolenAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "burnedAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "pointsSpent",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRobberyPointsAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BuildingRobbed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "damage",
+          "type": "uint256"
+        }
+      ],
+      "name": "applyDamage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "armyInfo",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "robberyMultiplier",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pointsDebt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "points",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "besiegingArmyUnitsByType",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "calculateArmyTotalSiegePower",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "armyTotalSiegePower",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "calculateArmyUnitsSiegePower",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "armySiegePower",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "canLiquidateArmyBesiegingUnits",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "canLiquidate",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getArmyBesiegingUnitsAmounts",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getArmyRobberyPoints",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "robberyPoints",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "liquidate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bool[]",
+          "name": "toAddIndication",
+          "type": "bool[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newRobberyMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "name": "modifyArmySiege",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "relatedSettlement",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "robberyPointsPerOneDamage",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "buildingAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pointsToSpend",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapRobberyPointsForResourceFromBuildingTreasury",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSiegePower",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

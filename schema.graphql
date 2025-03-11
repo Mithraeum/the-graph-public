@@ -1,0 +1,645 @@
+""" Optional entities """
+type Erc20ForSettlementPurchaseTokenHolder @entity {
+    id: ID!
+    balance: BigInt!
+}
+
+""" World entities """
+
+type World @entity {
+	id: ID!
+	erc20ForBuyingSettlement: Erc20ForBuyingSettlement!
+	bannersContract: BannersContract!
+	geography: Geography!
+	registry: Registry!
+	crossErasMemory: CrossErasMemory!
+	rewardPool: Bytes!
+
+	gameStartTime: BigInt!
+	gameFinishTime: BigInt!
+	currentEraNumber: BigInt!
+
+	eras: [Era!] @derivedFrom(field: "world")
+    erasCount: BigInt!
+
+    worldStatistic: WorldStatistic!
+}
+
+type WorldStatistic @entity {
+    id: ID!
+    world: World!
+
+    totalCreatedSettlements: BigInt!
+    totalHiredWorkers: BigInt!
+    totalHiredUnits: BigInt!
+}
+
+"""
+type RewardPool @entity {
+    id: ID!
+    world: World!
+
+    ethBalance: BigInt!
+    toBeRepaidTokenAmount: BigInt!
+    lastSyncedTokenBalance: BigInt!
+}
+"""
+
+type Erc20ForBuyingSettlement @entity {
+    id: ID!
+    world: World!
+}
+
+type BannersContract @entity {
+    id: ID!
+    world: World!
+
+    banners: [Banner!] @derivedFrom(field: "bannersContract")
+    bannersCount: BigInt!
+}
+
+type Geography @entity {
+    id: ID!
+    world: World!
+
+    includedRegions: [IncludedRegion!] @derivedFrom(field: "geography")
+    includedRegionsCount: BigInt!
+}
+
+type Registry @entity {
+    id: ID!
+    world: World!
+}
+
+type CrossErasMemory @entity {
+    id: ID!
+    world: World!
+
+    cemPositions: [CemPosition!] @derivedFrom(field: "crossErasMemory")
+}
+
+""" Game entities """
+
+type CemPosition @entity {
+    id: ID!
+    crossErasMemory: CrossErasMemory!
+    settlement: Settlement
+
+    """ ADDED TO HELP QUERY DATA """
+    regionId: BigInt!
+}
+
+type Banner @entity {
+    id: ID!
+    bannersContract: BannersContract!
+    name: String!
+    settlement: Settlement
+}
+
+type IncludedRegion @entity {
+    id: ID!
+    geography: Geography!
+    regionId: BigInt!
+}
+
+type Era @entity {
+	id: ID!
+	world: World!
+	eraNumber: BigInt!
+	resources: [Resource!] @derivedFrom(field: "era")
+	tileCapturingSystem: TileCapturingSystem
+
+	activatedRegions: [Region!] @derivedFrom(field: "era")
+    activatedRegionsCount: BigInt!
+}
+
+type TileCapturingSystem @entity {
+    id: ID!
+    era: Era!
+    tileCapturingRecords: [TileCapturingRecord!] @derivedFrom(field: "tileCapturingSystem")
+    tileCapturingRecordsCount: BigInt!
+}
+
+type TileCapturingRecord @entity {
+    id: ID!
+    tileCapturingSystem: TileCapturingSystem!
+    time: BigInt!
+    settlement: Settlement!
+    position: BigInt!
+    actionType: String!
+    prosperityStake: BigInt
+}
+
+type Region @entity {
+	id: ID!
+	includedRegion: IncludedRegion!
+	era: Era!
+	workersPool: WorkersPool
+
+	settlements: [Settlement!] @derivedFrom(field: "region")
+	settlementsCount: BigInt!
+}
+
+type WorkersPool @entity {
+	id: ID!
+	region: Region!
+	transactions: [WorkersPoolTransaction!] @derivedFrom(field: "workersPool")
+}
+
+type WorkersPoolTransaction @entity {
+	id: ID!
+	workersPool: WorkersPool!
+	txHash: Bytes!
+	time: BigInt!
+	settlement: Settlement!
+	prosperitySpent: BigInt!
+	workersBought: BigInt!
+}
+
+type Settlement @entity {
+	id: ID!
+	position: BigInt!
+	region: Region!
+	banner: Banner
+
+	buildings: [Building!] @derivedFrom(field: "settlement")
+	buildingsCount: BigInt!
+
+	currentGovernorsGeneration: BigInt!
+	governors: [Governor!] @derivedFrom(field: "settlement")
+	governorsCount: BigInt!
+
+	producedCorruptionIndex: BigInt
+}
+
+type Siege @entity {
+    id: ID!
+    settlement: Settlement!
+    totalSiegePower: BigInt!
+}
+
+type Governor @entity {
+	id: ID!
+	status: String!
+
+	assignedTime: BigInt!
+	assignedByAddress: Bytes!
+
+	modifiedTime: BigInt!
+	modifiedByAddress: Bytes!
+
+	assignedAtGeneration: BigInt!
+
+	governorAddress: Bytes!
+	settlement: Settlement
+}
+
+type Building @entity {
+	id: ID!
+	buildingTypeId: Bytes!
+	settlement: Settlement!
+
+	basicProductionLevel: BigInt!
+	advancedProductionLevel: BigInt!
+	level: BigInt!
+
+	activeDistribution: Distribution
+    distributions: [Distribution!] @derivedFrom(field: "building")
+}
+
+type Distribution @entity {
+    id: ID!
+    building: Building!
+    status: String!
+
+    distributionTokenHolders: [DistributionTokenHolder!] @derivedFrom(field: "distribution")
+    distributionTokenHoldersCount: BigInt!
+}
+
+type DistributionTokenHolder @entity {
+	id: ID!
+	distribution: Distribution
+	building: Building!
+    userAddress: Bytes!
+	amount: BigInt!
+    createdAt: BigInt!
+    updatedAt: BigInt
+
+    # Necessary for query
+    eraNumber: BigInt!
+}
+
+type Army @entity {
+	id: ID!
+	currentSettlement: Settlement!
+	destinationSettlement: Settlement
+	secretDestinationRegion: Region
+	movementStartTime: BigInt
+	movementFinishTime: BigInt
+}
+
+type Battle @entity {
+	id: ID!
+	settlement: Settlement!
+	status: String!
+	side1Armies: [Bytes!]!
+	side2Armies: [Bytes!]!
+}
+
+type Units @entity {
+    id: ID!
+    unitTypeId: Bytes!
+    era: Era!
+}
+
+type Resource @entity {
+    id: ID!
+    resourceTypeId: Bytes!
+    era: Era!
+
+    holders: [ResourceHolder!] @derivedFrom(field: "resource")
+    holdersCount: BigInt!
+}
+
+type ResourceHolder @entity {
+	id: ID!
+	address: String!
+	resource: Resource!
+    amount: BigInt!
+}
+
+type Allowance @entity {
+    id: ID!
+    resource: Resource!
+    owner: Bytes!
+    spender: Bytes!
+    value: BigInt!
+}
+
+""" Action entities """
+
+type ManeuveringBeganAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+	fromSettlement: Bytes!
+	toSettlement: Bytes
+	position: BigInt!
+	secretDestinationRegionId: BigInt!
+	secretDestinationPosition: Bytes!
+	beginTime: BigInt!
+	endTime: BigInt!
+	tokensToSpendOnAcceleration: BigInt!
+}
+
+type SecretManeuverCancelledAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+	fromSettlement: Bytes!
+}
+
+type UnitsDemilitarizedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+	onSettlement: Bytes!
+	unitTypeIds: [Bytes!]!
+	unitAmounts: [BigInt!]!
+}
+
+type BattleCreatedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	attackerArmy: Bytes!
+	attackedArmy: Bytes!
+	battle: Bytes!
+}
+
+type JoinedBattleAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	joinedArmy: Bytes!
+	side: BigInt!
+	battle: Bytes!
+}
+
+type ArmySiegeModifiedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+	onSettlement: Bytes!
+	unitTypeIds: [Bytes!]!
+	toAddIndication: [Boolean!]!
+	unitsAmounts: [BigInt!]!
+	newRobberyMultiplier: BigInt!
+	newTotalSiegePower: BigInt!
+}
+
+type BuildingRobbedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	building: Bytes!
+	army: Bytes!
+	stolenAmount: BigInt!
+	burnedAmount: BigInt!
+	pointsSpent: BigInt!
+	newRobberyPointsAmount: BigInt!
+}
+
+type DistributedToShareHolderAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	building: Bytes!
+	resourceTypeId: Bytes!
+	holder: Bytes!
+	amount: BigInt!
+}
+
+type BasicProductionUpgradedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	building: Bytes!
+	newBasicProductionLevel: BigInt!
+}
+
+type AdvancedProductionUpgradedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	building: Bytes!
+	newAdvancedProductionLevel: BigInt!
+}
+
+type SettlementRestoredAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	position: BigInt!
+}
+
+type GovernorStatusChangedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	currentGovernorsGeneration: BigInt!
+	governor: Bytes!
+	modifiedByAddress: Bytes!
+	newStatus: Boolean!
+}
+
+type GovernorsGenerationChangedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	newGovernorsGeneration: BigInt!
+}
+
+type WorkersBoughtAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	boughtWorkersAmount: BigInt!
+	spentProsperityAmount: BigInt!
+}
+
+type TileCapturingBeganAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	contesterSettlement: Bytes!
+	ownedBySettlement: Bytes!
+	previousUsurperSettlement: Bytes!
+	position: BigInt!
+	prosperityStake: BigInt!
+	captureBeginTime: BigInt!
+	captureEndTime: BigInt!
+}
+
+type TileCapturingCancelledAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	ownedBySettlement: Bytes!
+	position: BigInt!
+}
+
+type CapturedTileGivenUpAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	position: BigInt!
+}
+
+type CapturedTileClaimedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	newSettlement: Bytes!
+	oldSettlement: Bytes!
+	position: BigInt!
+	prosperityStake: BigInt!
+}
+
+type DestroyedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	oldSettlement: Bytes!
+}
+
+type SettlementBoughtAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	settlement: Bytes!
+	settlementCost: BigInt!
+}
+
+type ArmyLiquidatedAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+}
+
+type UnitsBoughtAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	army: Bytes!
+	spender: Bytes!
+	boughtUnitsAmount: BigInt!
+	spentTokensAmount: BigInt!
+	unitTypeId: Bytes!
+	newUnitPrice: BigInt!
+}
+
+type WorkersTransferAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+	from: Bytes!
+	to: Bytes!
+	amount: BigInt!
+}
+
+type ResourceTransferAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+    resource: Resource!
+	from: Bytes!
+    to: Bytes!
+    amount: BigInt!
+}
+
+type UnitsTransferAction @entity {
+	id: ID!
+	timestamp: BigInt!
+	blockNumber: BigInt!
+	transactionHash: Bytes!
+	transactionIndex: BigInt!
+	logIndex: BigInt!
+	blockNumberAndLogIndex: BigInt!
+
+    units: Units!
+	from: Bytes!
+    to: Bytes!
+    amount: BigInt!
+}

@@ -1,0 +1,254 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ICrossErasMemory",
+  "sourceName": "contracts/core/crossErasMemory/ICrossErasMemory.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "OnlyActiveEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyWorldAssetFromActiveEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyWorldAssetFromOldEra",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "SettlementByBannerIdUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "SettlementOnPositionUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "isNewSettlement",
+          "type": "bool"
+        }
+      ],
+      "name": "addUserSettlement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "settlementPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastUpdateTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeRegionSettlementPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "worldAddress",
+          "type": "address"
+        }
+      ],
+      "name": "init",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "placeSettlementOnMap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        }
+      ],
+      "name": "regionSettlementPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        }
+      ],
+      "name": "regionSettlementPriceUpdateTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        }
+      ],
+      "name": "regionUserSettlementsCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "removeUserSettlement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "settlementByBannerId",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "settlementByPosition",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

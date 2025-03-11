@@ -1,0 +1,768 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IArmy",
+  "sourceName": "contracts/core/assets/army/IArmy.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "ArmyCannotAccelerateManeuverFromCultistsSettlementWithNonZeroCultistsArmy",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotAttackAnotherArmyIfTheyAreNotOnSamePosition",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotAttackItself",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotAttackNotCurrentEraArmy",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotBeDemilitarizedDueToCooldown",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotBesiegeOwnSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotJoinToBattleNotAtSamePosition",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotJoinToBattleNotInLobbyPhase",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotJoinToNotCurrentEraBattle",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotManeuverToPositionWithoutSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotManeuverToSamePosition",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotModifySiegeUnitsToLiquidatableState",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyCannotUseMoreResourcesForAccelerationThanBuildingTreasuryHas",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyIsInBattle",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyIsInSiege",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyIsManeuvering",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyIsNotManeuveringSecretly",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyIsStunned",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyWithoutUnitsCannotAccelerate",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyWithoutUnitsCannotBeginSecretManeuver",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyWithoutUnitsCannotJoinBattle",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ArmyWithoutUnitsCannotManeuverToNotHomeSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotEnoughUnitsForDemilitarization",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyRulerOrWorldAssetFromSameEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "SecretManeuverRevealNotPossibleAtThisTime",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "SecretManeuverRevealNotPossibleToNotSpecifiedRegion",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WrongDemilitarizationInput",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WrongJoinSide",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WrongRobberyMultiplierSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WrongSecretManeuverRevealInfo",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "battleAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "targetArmyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "BattleCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "battleAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ExitedFromBattle",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "battleAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        }
+      ],
+      "name": "JoinedBattle",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "secretDestinationRegionId",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "secretDestinationPosition",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "beginTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokensToSpendOnAcceleration",
+          "type": "uint256"
+        }
+      ],
+      "name": "ManeuveringBegan",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "SecretManeuverCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "stunBeginTime",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "stunEndTime",
+          "type": "uint64"
+        }
+      ],
+      "name": "StunApplied",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "UnitsDemilitarized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "UpdatedPosition",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "additionalUnitsBattleMultipliers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "stunDuration",
+          "type": "uint64"
+        }
+      ],
+      "name": "applySelfStun",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "battle",
+      "outputs": [
+        {
+          "internalType": "contract IBattle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "maxUnitTypeIdsToAttack",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "maxUnitsToAttack",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "beginBattle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "foodToSpendOnAcceleration",
+          "type": "uint256"
+        }
+      ],
+      "name": "beginOpenManeuver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "secretDestinationRegionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "secretDestinationPosition",
+          "type": "bytes32"
+        }
+      ],
+      "name": "beginSecretManeuver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "burnUnits",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "cancelSecretManeuver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "currentPosition",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unitBattleMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseUnitBattleMultiplier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "demilitarize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrentPosition",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "ownerAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalSiegeSupport",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalSiegeSupport",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unitBattleMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseUnitBattleMultiplier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isAtHomePosition",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isAtHomePosition",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isManeuvering",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isManeuvering",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "battleAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        }
+      ],
+      "name": "joinBattle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastDemilitarizationTime",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "liquidateUnits",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maneuverInfo",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "beginTime",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "endTime",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationPosition",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "secretDestinationRegionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "secretDestinationPosition",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bool[]",
+          "name": "toAddIndication",
+          "type": "bool[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newRobberyMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "name": "modifySiege",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "relatedSettlement",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationPosition",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "revealKey",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "woodToSpendOnAcceleration",
+          "type": "uint256"
+        }
+      ],
+      "name": "revealSecretManeuver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stunInfo",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "beginTime",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "endTime",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "buildingAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pointsToSpend",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapRobberyPointsForResourceFromBuildingTreasury",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "updateState",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

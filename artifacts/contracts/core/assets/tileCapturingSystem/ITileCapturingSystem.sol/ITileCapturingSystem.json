@@ -1,0 +1,365 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ITileCapturingSystem",
+  "sourceName": "contracts/core/assets/tileCapturingSystem/ITileCapturingSystem.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureBySettlementAlreadyHavingMaximumCapturedTilesWithSameBonus",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureBySettlementWhichIsAlreadyCapturingTile",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureDueToNonExistentPositionSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureDueToNotHavingSpecifiedProsperity",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureDueToNotReachedNextMinimumProsperityStake",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureOfPositionWithoutBonus",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureOnNotActivatedRegion",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotBeginTileCaptureOnPositionWithSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CapturedTileCannotBeGivenUpByNonSettlementOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ClaimTileCaptureCannotBeDoneAtThisTime",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ClaimTileCaptureCannotBeDoneByNonUsurperSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ClaimTileCaptureCannotBeDoneWithoutNecessaryProsperity",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TileCaptureCannotBeCancelledBySettlementWhichIsNotCurrentTileUsurper",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UnknownTileBonus",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "previousSettlementOwnerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "prosperityStake",
+          "type": "uint256"
+        }
+      ],
+      "name": "CapturedTileClaimed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "CapturedTileGivenUp",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "previousUsurperAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "prosperityStake",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "captureBeginTime",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "captureEndTime",
+          "type": "uint64"
+        }
+      ],
+      "name": "TileCapturingBegan",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "TileCapturingCancelled",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "prosperityStake",
+          "type": "uint256"
+        }
+      ],
+      "name": "beginTileCapture",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "cancelTileCapture",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "claimTileCapture",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "tileBonusType",
+          "type": "uint8"
+        }
+      ],
+      "name": "getCapturedTilesBySettlementAddress",
+      "outputs": [
+        {
+          "internalType": "uint64[]",
+          "name": "positions",
+          "type": "uint64[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "giveUpCapturedTile",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "handleSettlementCreatedOnPosition",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "settlementCapturingTile",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "tilesInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "ownerSettlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "usurperSettlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "usurperProsperityStake",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint64",
+          "name": "usurperCaptureBeginTime",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "usurperCaptureEndTime",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

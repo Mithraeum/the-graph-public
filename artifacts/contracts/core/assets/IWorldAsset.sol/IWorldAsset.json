@@ -1,0 +1,78 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWorldAsset",
+  "sourceName": "contracts/core/assets/IWorldAsset.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "OnlyActiveGame",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyMightyCreator",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyWorldAssetFromSameEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "era",
+      "outputs": [
+        {
+          "internalType": "contract IEra",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "registry",
+      "outputs": [
+        {
+          "internalType": "contract IRegistry",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "world",
+      "outputs": [
+        {
+          "internalType": "contract IWorld",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "worldAssetFactory",
+      "outputs": [
+        {
+          "internalType": "contract IWorldAssetFactory",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

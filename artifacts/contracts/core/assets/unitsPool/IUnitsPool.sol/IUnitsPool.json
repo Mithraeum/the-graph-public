@@ -1,0 +1,247 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IUnitsPool",
+  "sourceName": "contracts/core/assets/unitsPool/IUnitsPool.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsDueToTheirCostIsHigherThanMaxTokensToSellSpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsExceedingArmyUnitsLimit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsExceedingTransactionLimit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsForArmyWhichSettlementDoesNotBelongToRelatedRegion",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsInvalidUnitsToBuySpecified",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsWhileArmyIsManeuvering",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsWhileArmyIsNotOnHomePosition",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CannotHireUnitsWhileArmyIsStunned",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyRelatedRegion",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyRulerOrWorldAsset",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "boughtUnitsAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "spentTokensAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newUnitPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "UnitsBought",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitsToBuy",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateTokensForExactUnits",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokensToSell",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newUnitPrice",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastPurchaseTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "relatedRegion",
+      "outputs": [
+        {
+          "internalType": "contract IRegion",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokensOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unitsToBuy",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxTokensToSell",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapTokensForExactUnits",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitsAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokensOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "msgSender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unitsToBuy",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxTokensToSell",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapTokensForExactUnitsByRegion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitsAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unitPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unitTypeId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

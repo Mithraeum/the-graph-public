@@ -1,0 +1,28 @@
+{
+  "name": "@mithraeum/mithraeum-subgraph",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "docker-localhost": "docker-compose -f docker/docker-compose.yml up"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.37.0"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.ts",
+        "options": {
+          "printWidth": 120,
+          "tabWidth": 4,
+          "useTabs": false,
+          "singleQuote": false,
+          "bracketSpacing": false,
+          "explicitTypes": "always"
+        }
+      }
+    ]
+  }
+}

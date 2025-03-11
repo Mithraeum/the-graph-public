@@ -1,0 +1,493 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IBattle",
+  "sourceName": "contracts/core/assets/battle/IBattle.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "BattleCannotAcceptCultistsArmyWhenCultistsAmountChangedToLowerValueThanDesired",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeCreatedByDesiringToAttackCultistsArmyWithoutUnits",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeCreatedWhenArmyUnitsExceedDesiredAmountToAttack",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeCreatedWhenAttackedArmyIsAlmostOnAnotherPosition",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeCreatedWithArmiesHavingZeroUnits",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeFinishedAtThisTime",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BattleCannotBeFinishedMoreThanOnce",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        }
+      ],
+      "name": "ArmyJoined",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "BattleEnded",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptArmyInBattle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "armySide",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "armySide",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "armyUnitsAdditionalMultipliers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitAmountMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "armyUnitsAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitsAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "battleTimeInfo",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "beginTime",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "duration",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "endTime",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "calculateAllCasualties",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "sideACasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "sideBCasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "winningSide",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "armyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "calculateArmyCasualties",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isArmyWon",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "unitsAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "globalMultiplier",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "baseBattleDuration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minBattleDuration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isCultistsAttacked",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "units1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "units2",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxBattleDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateBattleDuration",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "battleDuration",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "calculateStage1Casualties",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "sideACasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "sideBCasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "stageParams",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "stage1SideACasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "stage1SideBCasualties",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "calculateStage2Casualties",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "sideACasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "sideBCasualties",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "stageParams",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "canEndBattle",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "canEndBattle",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "casualties",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "casualtiesCount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "endBattle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "isCultistsAttacked",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxBattleDuration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sideAUnitsAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sideBUnitsAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBattleDuration",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "battleDuration",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isEndedBattle",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isEndedBattle",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isLobbyTime",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isLobbyTime",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "position",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "side",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "sideUnitsAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitsAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "winningSide",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "winningSide",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

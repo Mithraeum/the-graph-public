@@ -1,0 +1,476 @@
+specVersion: 1.0.0
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: World
+    network: soneium
+    source:
+      address: '0x38144C60E3B811187e7c852cc5CCf80ca35703b8'
+      abi: World
+      startBlock: 3198404
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Era
+      abis:
+        - name: World
+          file: ./artifacts/contracts/core/World.sol/World.json
+        - name: RewardPool
+          file: ./artifacts/contracts/core/rewardPool/RewardPool.sol/RewardPool.json
+      eventHandlers:
+        - event: >-
+            WorldInitialized(address,address,address,address,address,address,address,address,address,address)
+          handler: handleWorldInitialized
+        - event: GameBeginTimeUpdated(uint256)
+          handler: handleGameBeginTimeUpdated
+        - event: GameEndTimeUpdated(uint256)
+          handler: handleGameEndTimeUpdated
+        - event: EraCreated(address,uint256)
+          handler: handleEraCreated
+        - event: CurrentEraNumberUpdated(uint256)
+          handler: handleCurrentEraNumberUpdated
+      file: ./mappings/world.ts
+  - kind: ethereum/contract
+    name: Geography
+    network: soneium
+    source:
+      address: '0x93c9b71651FE77BE0D4b50bd291237D188e035e9'
+      abi: Geography
+      startBlock: 3198408
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Geography
+      abis:
+        - name: Geography
+          file: ./artifacts/contracts/core/geography/Geography.sol/Geography.json
+      eventHandlers:
+        - event: RegionIncluded(uint64)
+          handler: handleNewRegionIncluded
+      file: ./mappings/geography.ts
+  - kind: ethereum/contract
+    name: Banner
+    network: soneium
+    source:
+      address: '0x648ecf46D4b22D1B7Af239718470D2c17eD7faE7'
+      abi: Banners
+      startBlock: 3198522
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Banner
+        - Settlement
+      abis:
+        - name: Banners
+          file: ./artifacts/contracts/banners/Banners.sol/Banners.json
+      eventHandlers:
+        - event: BannerCreated(uint256,string,(address,uint256)[16],bytes)
+          handler: handleBannerCreated
+        - event: BannerUpdated(uint256,string,(address,uint256)[16],bytes)
+          handler: handleBannerUpdated
+      file: ./mappings/banner.ts
+  - kind: ethereum/contract
+    name: Distributions
+    network: soneium
+    source:
+      address: '0xCF55c801741aF8f0B69F750C404F9e0C3699E14b'
+      abi: Distributions
+      startBlock: 3198531
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Distributions
+        - Building
+      abis:
+        - name: Distributions
+          file: >-
+            ./artifacts/contracts/core/distributions/Distributions.sol/Distributions.json
+        - name: Building
+          file: >-
+            ./artifacts/contracts/core/assets/building/Building.sol/Building.json
+      eventHandlers:
+        - event: >-
+            TransferSingle(indexed address,indexed address,indexed
+            address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: >-
+            TransferBatch(indexed address,indexed address,indexed
+            address,uint256[],uint256[])
+          handler: handleTransferBatch
+      file: ./mappings/distributions.ts
+  - kind: ethereum/contract
+    name: Erc20ForSettlementPurchase
+    network: soneium
+    source:
+      address: '0x7633acBABEEea112710d2Ec99a5fBc87D340BB06'
+      abi: IERC20
+      startBlock: 3198356
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Erc20ForSettlementPurchaseTokenHolder
+      abis:
+        - name: IERC20
+          file: >-
+            ./artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleErc20ForSettlementPurchaseTransfer
+      file: ./mappings/erc20ForSettlementPurchase.ts
+templates:
+  - kind: ethereum/contract
+    name: Era
+    network: soneium
+    source:
+      abi: Era
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Era
+        - Settlement
+      abis:
+        - name: Era
+          file: ./artifacts/contracts/core/assets/era/Era.sol/Era.json
+        - name: Settlement
+          file: >-
+            ./artifacts/contracts/core/assets/settlement/Settlement.sol/Settlement.json
+      eventHandlers:
+        - event: ResourceCreated(address,bytes32)
+          handler: handleResourceCreated
+        - event: UnitsCreated(address,bytes32)
+          handler: handleUnitsCreated
+        - event: WorkersCreated(address)
+          handler: handleWorkersCreated
+        - event: ProsperityCreated(address)
+          handler: handleProsperityCreated
+        - event: TileCapturingSystemCreated(address)
+          handler: handleTileCapturingSystemCreated
+        - event: RegionActivated(address,uint256)
+          handler: handleRegionActivated
+        - event: SettlementCreated(address,bytes32,address,uint64,uint256)
+          handler: handleSettlementCreated
+        - event: SettlementRestored(address,uint64)
+          handler: handleSettlementRestored
+      file: ./mappings/era.ts
+  - kind: ethereum/contract
+    name: TileCapturingSystem
+    network: soneium
+    source:
+      abi: TileCapturingSystem
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TileCapturingSystem
+        - TileCapturingSystemRecord
+        - Settlement
+      abis:
+        - name: TileCapturingSystem
+          file: >-
+            ./artifacts/contracts/core/assets/tileCapturingSystem/TileCapturingSystem.sol/TileCapturingSystem.json
+      eventHandlers:
+        - event: TileCapturingBegan(address,uint64,address,uint256,uint64,uint64)
+          handler: handleTileCapturingBegan
+        - event: TileCapturingCancelled(uint64,address)
+          handler: handleTileCapturingCancelled
+        - event: CapturedTileClaimed(address,uint64,address,uint256)
+          handler: handleCapturedTileClaimed
+        - event: CapturedTileGivenUp(uint64,address)
+          handler: handleCapturedTileGivenUp
+      file: ./mappings/tileCapturingSystem.ts
+  - kind: ethereum/contract
+    name: Region
+    network: soneium
+    source:
+      abi: Region
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Region
+        - Settlement
+      abis:
+        - name: Region
+          file: ./artifacts/contracts/core/assets/region/Region.sol/Region.json
+      eventHandlers:
+        - event: WorkersPoolCreated(address)
+          handler: handleWorkersPoolCreated
+        - event: UnitsPoolCreated(address,bytes32)
+          handler: handleUnitsPoolCreated
+        - event: SettlementsMarketCreated(address)
+          handler: handleSettlementsMarketCreated
+        - event: CorruptionIndexIncreased(address,uint256)
+          handler: handleCorruptionIndexIncreased
+        - event: CorruptionIndexDecreased(address,uint256)
+          handler: handleCorruptionIndexDecreased
+      file: ./mappings/region.ts
+  - kind: ethereum/contract
+    name: WorkersPool
+    network: soneium
+    source:
+      abi: WorkersPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Region
+        - WorkersPool
+      abis:
+        - name: WorkersPool
+          file: >-
+            ./artifacts/contracts/core/assets/workersPool/WorkersPool.sol/WorkersPool.json
+      eventHandlers:
+        - event: WorkersBought(address,uint256,uint256)
+          handler: handleWorkersBought
+      file: ./mappings/workersPool.ts
+  - kind: ethereum/contract
+    name: SettlementsMarket
+    network: soneium
+    source:
+      abi: SettlementsMarket
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - SettlementsMarket
+      abis:
+        - name: SettlementsMarket
+          file: >-
+            ./artifacts/contracts/core/assets/settlementsMarket/SettlementMarket.sol/SettlementsMarket.json
+      eventHandlers:
+        - event: SettlementBought(address,uint256)
+          handler: handleSettlementBought
+      file: ./mappings/settlementsMarket.ts
+  - kind: ethereum/contract
+    name: UnitsPool
+    network: soneium
+    source:
+      abi: UnitsPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - UnitsPool
+        - Army
+      abis:
+        - name: UnitsPool
+          file: >-
+            ./artifacts/contracts/core/assets/unitsPool/IUnitsPool.sol/IUnitsPool.json
+        - name: Army
+          file: ./artifacts/contracts/core/assets/army/Army.sol/Army.json
+      eventHandlers:
+        - event: UnitsBought(address,address,uint256,uint256,uint256)
+          handler: handleUnitsBought
+      file: ./mappings/unitsPool.ts
+  - kind: ethereum/contract
+    name: Settlement
+    network: soneium
+    source:
+      abi: Settlement
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Settlement
+        - Army
+      abis:
+        - name: Settlement
+          file: >-
+            ./artifacts/contracts/core/assets/settlement/Settlement.sol/Settlement.json
+        - name: Building
+          file: >-
+            ./artifacts/contracts/core/assets/building/Building.sol/Building.json
+      eventHandlers:
+        - event: BuildingCreated(address,bytes32)
+          handler: handleBuildingCreated
+        - event: ArmyCreated(address,uint64)
+          handler: handleArmyCreated
+        - event: SiegeCreated(address)
+          handler: handleSiegeCreated
+        - event: GovernorStatusChanged(uint256,address,address,bool)
+          handler: handleGovernorStatusChanged
+        - event: GovernorsGenerationChanged(uint256)
+          handler: handleGovernorsGenerationChanged
+        - event: Destroyed()
+          handler: handleDestroyed
+      file: ./mappings/settlement.ts
+  - kind: ethereum/contract
+    name: Siege
+    network: soneium
+    source:
+      abi: Siege
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Siege
+        - Era
+      abis:
+        - name: Siege
+          file: ./artifacts/contracts/core/assets/siege/Siege.sol/Siege.json
+      eventHandlers:
+        - event: >-
+            ArmySiegeModified(address,bytes32[],bool[],uint256[],uint256,uint256)
+          handler: handleArmySiegeModified
+        - event: ArmyLiquidated(address)
+          handler: handleArmyLiquidated
+        - event: BuildingRobbed(address,address,uint256,uint256,uint256,uint256)
+          handler: handleBuildingRobbed
+      file: ./mappings/siege.ts
+  - kind: ethereum/contract
+    name: Building
+    network: soneium
+    source:
+      abi: Building
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Settlement
+        - Building
+      abis:
+        - name: Building
+          file: >-
+            ./artifacts/contracts/core/assets/building/Building.sol/Building.json
+      eventHandlers:
+        - event: BasicProductionUpgraded(uint256,uint256)
+          handler: handleBasicProductionUpgraded
+        - event: AdvancedProductionUpgraded(uint256,uint256)
+          handler: handleAdvancedProductionUpgraded
+        - event: DistributionCreated(uint256)
+          handler: handleDistributionCreated
+        - event: DistributedToShareHolder(bytes32,address,uint256)
+          handler: handleDistributedToShareHolder
+      file: ./mappings/building.ts
+  - kind: ethereum/contract
+    name: Army
+    network: soneium
+    source:
+      abi: Army
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Settlement
+        - Army
+        - Battle
+        - Era
+      abis:
+        - name: Army
+          file: ./artifacts/contracts/core/assets/army/Army.sol/Army.json
+        - name: Era
+          file: ./artifacts/contracts/core/assets/era/Era.sol/Era.json
+      eventHandlers:
+        - event: ManeuveringBegan(uint64,uint64,bytes32,uint256,uint256,uint256)
+          handler: handleManeuveringBegan
+        - event: UpdatedPosition(address,uint64)
+          handler: handleUpdatedPosition
+        - event: BattleCreated(address,address)
+          handler: handleBattleCreated
+        - event: SecretManeuverCancelled()
+          handler: handleSecretManeuverCancelled
+        - event: UnitsDemilitarized(bytes32[],uint256[])
+          handler: handleUnitsDemilitarized
+        - event: JoinedBattle(address,uint256)
+          handler: handleJoinedBattle
+      file: ./mappings/army.ts
+  - kind: ethereum/contract
+    name: Battle
+    network: soneium
+    source:
+      abi: Battle
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Settlement
+        - Army
+        - Battle
+      abis:
+        - name: Battle
+          file: ./artifacts/contracts/core/assets/battle/Battle.sol/Battle.json
+      eventHandlers:
+        - event: BattleEnded(uint256)
+          handler: handleBattleEnded
+      file: ./mappings/battle.ts
+  - kind: ethereum/contract
+    name: Resource
+    network: soneium
+    source:
+      abi: Resource
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Continent
+      abis:
+        - name: Resource
+          file: >-
+            ./artifacts/contracts/core/assets/tokens/resources/Resource.sol/Resource.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleResourceTransfer
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+      file: ./mappings/resource.ts
+  - kind: ethereum/contract
+    name: Units
+    network: soneium
+    source:
+      abi: Units
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Continent
+      abis:
+        - name: Units
+          file: ./artifacts/contracts/core/assets/tokens/units/Units.sol/Units.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleUnitsTransfer
+      file: ./mappings/units.ts
+  - kind: ethereum/contract
+    name: Workers
+    network: soneium
+    source:
+      abi: Workers
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Continent
+      abis:
+        - name: Workers
+          file: >-
+            ./artifacts/contracts/core/assets/tokens/workers/Workers.sol/Workers.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleWorkersTransfer
+      file: ./mappings/workers.ts

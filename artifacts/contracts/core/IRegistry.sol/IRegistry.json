@@ -1,0 +1,1193 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IRegistry",
+  "sourceName": "contracts/core/IRegistry.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "OnlyMightyCreator",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "tileBonusVariation",
+          "type": "uint8"
+        }
+      ],
+      "name": "getAdvancedProductionTileBonusByVariation",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "buildingTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "capacityAmountMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getArmyStunDurationByJoiningBattleAtAttackingSide",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "stunDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getArmyStunDurationPerRobberyMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "armyStunDurationPerRobberyMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBaseBattleDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "baseBattleDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "buildingTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getBasicProductionBuildingCoefficient",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "basicProductionBuildingCoefficient",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBattleDurationLosingArmyStunMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "battleDurationLosingArmyStunMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBattleDurationWinningArmyStunMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "battleDurationWinningArmyStunMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBuildingActivationPrice",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "resourcesTypesIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "resourcesAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBuildingCooldownDurationAfterActivation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cooldownDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBuildingTokenTransferThresholdPercent",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "buildingTokenTransferThresholdPercent",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBuildingTypeIds",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "buildingTypeIds",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "buildingTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getBuildingUpgradeCostMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "buildingUpgradeCostMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCaptureTileDurationPerTile",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "captureTileDurationPerTile",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCaptureTileInitialDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "captureTileInitialDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "regionTier",
+          "type": "uint256"
+        }
+      ],
+      "name": "getChanceForTileWithBonusByRegionTier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "chanceForTileWithBonus",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "resourceTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getCorruptionIndexByResource",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "corruptionIndex",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCultistUnitTypeId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "cultistUnitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCultistsNoDestructionDelay",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cultistsNoDestructionDelay",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCultistsPerRegionMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cultistsPerRegionMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCultistsSummonDelay",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cultistsSummonDelay",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDemilitarizationCooldown",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "demilitarizationCooldown",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getGameResources",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "tokenName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "tokenSymbol",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "resourceTypeId",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct Config.GameResource[]",
+          "name": "resources",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getGameUnits",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "tokenName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "tokenSymbol",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "unitTypeId",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct Config.GameUnit[]",
+          "name": "units",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getGlobalMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "globalMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInitialCaptureProsperityBasicValue",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "initialCaptureProsperityBasicValue",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInitialCaptureProsperityPerTileValue",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "initialCaptureProsperityPerTileValue",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInitialCorruptionIndexPerCultistMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "initialCorruptionIndexPerCultistMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "regionTier",
+          "type": "uint256"
+        }
+      ],
+      "name": "getInitialCultistsAmountByRegionTier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "initialCultistsAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getManeuverStunDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maneuverStunDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxAdvancedProductionTileBuff",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxAdvancedProductionTileBuff",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxAllowedRobberyMultiplierIncreaseValue",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxAllowedRobberyMultiplierIncreaseValue",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxAllowedUnitsToBuyPerTransaction",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxAllowedUnitsToBuy",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxAllowedWorkersToBuyPerTransaction",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxAllowedWorkersToBuy",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "tileBonusType",
+          "type": "uint8"
+        }
+      ],
+      "name": "getMaxCapturedTilesForSettlement",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxCapturedTilesForSettlement",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxCultistsPerRegion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxCultistsPerRegion",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxRegionTier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxRegionTier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMaxSettlementsPerRegion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxSettlementsPerRegion",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMinimumBattleDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "minimumBattleDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMinimumUserSettlementsCountInNeighboringRegionRequiredToIncludeRegion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "minimumUserSettlementsCount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNecessaryProsperityPercentForClaimingTileCapture",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "necessaryProsperityPercentForClaimingTileCapture",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNewSettlementPriceIncreaseMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "newSettlementPriceIncreaseMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNewSettlementStartingPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "newSettlementStartingPrice",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNextCaptureProsperityBasicThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "nextCaptureProsperityBasicThreshold",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNextCaptureProsperityPerTileThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "nextCaptureProsperityPerTileThreshold",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getProductionTicksInSecond",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "ticks",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProsperityForUnitLiquidation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "prosperityPerUnit",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "regionTier",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRegionInclusionPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "regionInclusionPrice",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "regionTier",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRegionOwnerSettlementPurchasePercent",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "percent",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "resourceTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getResourceWeight",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "resourceWeight",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRobberyPointsPerDamageMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "robberyPointsPerDamageMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "resourceTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRobberyPointsToResourceMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "robberyPointsToResourceMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSettlementPayToDecreaseCorruptionIndexPenaltyMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "penaltyMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSettlementPriceMultiplierPerIncreasedRegionTier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "settlementPriceMultiplierPerIncreasedRegionTier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getStunDurationOfCancelledSecretManeuver",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "stunDurationOfCancelledSecretManeuver",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTileCaptureCancellationFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tileCaptureCancellationFee",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getToTreasuryPercent",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "toTreasuryPercent",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "tileBonusVariation",
+          "type": "uint8"
+        }
+      ],
+      "name": "getUnitBattleMultiplierTileBonusByVariation",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unitBattleMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUnitHiringFortHpMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitHiringFortHpMultiplier",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUnitPoolType",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitPoolType",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUnitPriceDropByUnitTypeId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUnitPriceIncreaseByUnitTypeId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUnitResourceUsagePer1SecondOfDecreasedManeuverDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "unitResourceUsagePer1SecondOfDecreasedManeuverDuration",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUnitStats",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offenseStage1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "defenceStage1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "offenseStage2",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "defenceStage2",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "siegePower",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "siegeSupport",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Config.UnitStats",
+          "name": "unitStats",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUnitTypeIds",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "unitTypeIds",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "buildingTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getWorkerCapacityCoefficient",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workerCapacityCoefficient",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWorkerPriceDrop",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWorkerPriceIncreaseForEachWorker",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWorkersAmountForBuildingActivation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workersAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getWorkersForUnitLiquidation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workersPerUnit",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "init",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mightyCreator",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newMightyCreator",
+          "type": "address"
+        }
+      ],
+      "name": "setMightyCreator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "worldAssetFactoryAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setWorldAssetFactory",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "worldAssetFactory",
+      "outputs": [
+        {
+          "internalType": "contract IWorldAssetFactory",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

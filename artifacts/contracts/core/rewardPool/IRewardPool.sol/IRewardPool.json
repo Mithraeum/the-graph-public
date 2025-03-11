@@ -1,0 +1,216 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IRewardPool",
+  "sourceName": "contracts/core/rewardPool/IRewardPool.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "NoTokensWillBeReceived",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotEnoughTokensLeft",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TokensToBeReceivedLessThanMinimumRequired",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UnableToReceiveEther",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newEthBalance",
+          "type": "uint256"
+        }
+      ],
+      "name": "EthBalanceUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newLastSyncedTokenBalance",
+          "type": "uint256"
+        }
+      ],
+      "name": "LastSyncedTokenBalanceUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newToBeRepaidTokenAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ToBeRepaidTokenAmountUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "defaultTokenPrice",
+      "outputs": [
+        {
+          "internalType": "int128",
+          "name": "",
+          "type": "int128"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrentPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokensAmountOut",
+          "type": "uint256"
+        }
+      ],
+      "name": "getIngotsAmountIn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "ingotsAmountIn",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "ingotsAmountIn",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTokensAmountOut",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokensAmountOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "worldAddress",
+          "type": "address"
+        }
+      ],
+      "name": "init",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountToInvest",
+          "type": "uint256"
+        }
+      ],
+      "name": "investIntoPrizePool",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastSyncedTokenBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "resourcesOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ingotsAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minTokensToReceive",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapIngotsForTokens",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "toBeRepaidTokenAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawRepayment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

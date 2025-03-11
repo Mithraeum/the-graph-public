@@ -1,0 +1,501 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IEra",
+  "sourceName": "contracts/core/assets/era/IEra.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "EraCannotActivateNotIncludedRegion",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "EraCannotActivateRegionMoreThanOnce",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedIfBannerNftIdIsAlreadyTakenByAnotherSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedInInactiveEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedInRegionWithMaximumAllowedSettlements",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedOnPositionWhichIsNotConnectedToAnotherSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedOnPositionWhichIsToCloseToAnotherSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeCreatedOnPositionWithAnotherSettlement",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeRestoredFromInactiveEra",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UserSettlementCannotBeRestoredIfItsRotten",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "prosperityAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ProsperityCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "regionAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "regionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "RegionActivated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "resourceAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "resourceTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ResourceCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "assetTypeId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "regionAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "SettlementCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "SettlementRestored",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "tileCapturingSystemAddress",
+          "type": "address"
+        }
+      ],
+      "name": "TileCapturingSystemCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newTotalCultists",
+          "type": "uint256"
+        }
+      ],
+      "name": "TotalCultistsChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "unitsAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "UnitsCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "workersAddress",
+          "type": "address"
+        }
+      ],
+      "name": "WorkersCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        }
+      ],
+      "name": "activateRegion",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "assetTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "createSettlementByType",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "createUserSettlement",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "settlementAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "creationTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseTotalCultists",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseTotalCultists",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "prosperity",
+      "outputs": [
+        {
+          "internalType": "contract IProsperity",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "regionId",
+          "type": "uint64"
+        }
+      ],
+      "name": "regions",
+      "outputs": [
+        {
+          "internalType": "contract IRegion",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "resourceTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "resources",
+      "outputs": [
+        {
+          "internalType": "contract IResource",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "restoreUserSettlement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "bannerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "settlementByBannerId",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "position",
+          "type": "uint64"
+        }
+      ],
+      "name": "settlementByPosition",
+      "outputs": [
+        {
+          "internalType": "contract ISettlement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tileCapturingSystem",
+      "outputs": [
+        {
+          "internalType": "contract ITileCapturingSystem",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalCultists",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "unitTypeId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "units",
+      "outputs": [
+        {
+          "internalType": "contract IUnits",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "workers",
+      "outputs": [
+        {
+          "internalType": "contract IWorkers",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
